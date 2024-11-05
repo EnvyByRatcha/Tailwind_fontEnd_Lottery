@@ -4,8 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="main.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Lotto</title>
   </head>
+  <style>
+    /* ซ่อนปุ่มเพิ่ม-ลดในทุกเบราว์เซอร์ */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield; /* สำหรับ Firefox */
+    }
+  </style>
   <body>
     <!---navberStart-->
     <div class="bg-black text-white h-16 w-full px-4">
@@ -26,6 +52,9 @@
           <a href="">กระเป๋าของฉัน</a>
           <a href="">ประวัติการซื้อ</a>
         </div>
+        <div class="md:hidden">
+          <button class=""><i class="fa-solid fa-bars"></i></button>
+        </div>
       </div>
     </div>
     <!---navberEnd-->
@@ -41,6 +70,115 @@
       </div>
     </div>
 
+    <div
+      class="mx-auto max-w-md bg-slate-400 shadow-lg p-4 h-fit rounded-xl border-2 mt-4 flex flex-col gap-4 my-4"
+    >
+      <div class="border-2">
+        <img
+          class="object-cover h-40 w-full"
+          src="https://miro.medium.com/v2/resize:fit:512/1*JEHLmWo6_SrpHPiP4AimIw.png"
+        />
+      </div>
+      <h2 class="text-lg">เลือกตำแหน่งและกรอกตัวเลขลอตเตอรี่</h2>
+      <div class="grid grid-cols-4 gap-2 w-full">
+        <button class="bg-slate-500 py-2 rounded-lg">6 หลัก</button>
+        <button class="bg-slate-500 py-2 rounded-lg">3 ตัวหน้า</button>
+        <button class="bg-slate-500 py-2 rounded-lg">3 ตัวท้าย</button>
+        <button class="bg-blue-600 py-2 rounded-lg">2 ตัวท้าย</button>
+      </div>
+      <div class="grid grid-cols-6 gap-2 justify-center my">
+        <input
+          id="num1"
+          type="text"
+          maxlength="1"
+          class="appearance-none h-16 flex text-center focus:outline-none text-4xl rounded-lg"
+          oninput="if(this.value.length === 1)  document.getElementById('num2').focus()"
+        />
+        <input
+          id="num2"
+          type="number"
+          class="appearance-none h-16 flex text-center focus:outline-none text-4xl rounded-lg"
+          oninput="if(this.value.length === 1)  document.getElementById('num3').focus()"
+          onkeydown="if(this.value.length===0 && event.key==='Backspace') document.getElementById('num1').focus()"
+        />
+        <input
+          id="num3"
+          type="number"
+          class="appearance-none h-16 flex text-center focus:outline-none text-4xl rounded-lg"
+          oninput="if(this.value.length === 1)  document.getElementById('num4').focus()"
+          onkeydown="if(this.value.length===0 && event.key==='Backspace') document.getElementById('num2').focus()"
+        />
+        <input
+          id="num4"
+          type="number"
+          class="appearance-none h-16 flex text-center focus:outline-none text-4xl rounded-lg"
+          oninput="if(this.value.length === 1)  document.getElementById('num5').focus()"
+          onkeydown="if(this.value.length===0 && event.key==='Backspace') document.getElementById('num3').focus()"
+        />
+        <input
+          id="num5"
+          type="number"
+          class="appearance-none h-16 flex text-center focus:outline-none text-4xl rounded-lg"
+          oninput="if(this.value.length === 1)  document.getElementById('num6').focus()"
+          onkeydown="if(this.value.length===0 && event.key==='Backspace') document.getElementById('num4').focus()"
+        />
+        <input
+          id="num6"
+          type="number"
+          class="appearance-none h-16 flex text-center focus:outline-none text-3xl rounded-lg"
+          oninput="if(this.value.length>1) this.value=this.value.slice(1,2)"
+          onkeydown="if(this.value.length===0 && event.key==='Backspace') document.getElementById('num5').focus()"
+        />
+      </div>
+
+      <h2 class="text-lg">เลือกประเภทลอตเตอรี่</h2>
+      <div class="grid grid-cols-2 gap-2">
+        <button
+          class="bg-white border-2 border-gray-400 hover:border-gray-500 rounded-lg py-2 text-lg"
+        >
+          เลขเดี่ยว
+        </button>
+        <button
+          class="bg-white border-2 border-gray-400 hover:border-gray-500 rounded-lg py-2 text-lg"
+        >
+          เลขชุด
+        </button>
+      </div>
+
+      <div class="">
+        <button
+          class="bg-black opacity-80 hover:opacity-100 text-white rounded-lg py-4 w-full"
+        >
+          จองลอตเตอรี่
+        </button>
+      </div>
+    </div>
+
     <!---contentEnd-->
+
+    <div
+      class="flex items-center justify-around bg-blue-700 text-white w-full pt-4 pb-2 md:hidden"
+    >
+      <div class="flex flex-col text-center gap-1">
+        <i class="fa fa-home"></i>
+        <p class="text-sm">หน้าแรก</p>
+      </div>
+      <div class="flex flex-col text-center gap-1">
+        <i class="fa fa-file-lines"></i>
+        <p class="text-sm">คำสั่งซื้อ</p>
+      </div>
+      <div class="flex flex-col text-center gap-1">
+        <i class="fa fa-user"></i>
+        <p class="text-sm">สมาชิก</p>
+      </div>
+      <div class="flex flex-col text-center gap-1">
+        <i class="fa fa-vault"></i>
+        <p class="text-sm">ตู้เซฟ</p>
+      </div>
+      <div class="flex flex-col text-center gap-1">
+        <i class="fa fa-cart-shopping"></i>
+        <p class="text-sm">ตะกร้า</p>
+      </div>
+    </div>
   </body>
 </html>
